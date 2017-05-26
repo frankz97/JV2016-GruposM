@@ -1,15 +1,11 @@
 /** 
  * Proyecto: Juego de la vida.
- * Representa el espacio y las leyes que determinan un mundo de simulación del según el modelo 2.
- * Se hace validación de datos pero no se gestionan todavía los errores correspondientes. 
- * @since: prototipo2.0
+ * @since: prototipo1.2
  * @source: Mundo.java 
- * @version: 2.0 - 2017.03.11
- * @author: ajp
+ * @version: 2.1 - 2017.05.05
+ * @author: Fran
+ * @author: Grupo 3
  */
-
-package modelo;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -33,9 +29,10 @@ public class Mundo implements Leyes, Serializable, Cloneable {
 	 * @param constantes
 	 * @param distribucion
 	 * @param espacio
+	 * @throws Exception 
 	 */
 	public Mundo(String nombre, List<Integer> constantes, 
-			Map<Patron, Posicion> distribucion, byte[][] espacio) {
+			Map<Patron, Posicion> distribucion, byte[][] espacio) throws Exception {
 		setNombre(nombre);
 		setConstantes(constantes);
 		setDistribucion(distribucion);
@@ -46,8 +43,9 @@ public class Mundo implements Leyes, Serializable, Cloneable {
 	 * Constructor por defecto.
 	 * Establece el valor inicial, por defecto, de cada uno de los atributos.
 	 * Llama al constructor convencional de la propia clase.
+	 * @throws Exception 
 	 */
-	public Mundo() {
+	public Mundo() throws Exception {
 		this("MundoDefecto", new ArrayList<Integer>(), 
 				new Hashtable<Patron, Posicion>(), null);
 	}
@@ -60,8 +58,9 @@ public class Mundo implements Leyes, Serializable, Cloneable {
 	 * con los contructores copia de los atributos.
 	 * El atributo espacio es clonado utilizando utilidades de clonación de arrays.
 	 * @param m - ea Mundo a clonar
+	 * @throws Exception 
 	 */
-	public Mundo(Mundo m) {
+	public Mundo(Mundo m) throws Exception {
 		this(m.nombre, new ArrayList<Integer>(m.constantes), 
 				new Hashtable<Patron,Posicion>(m.distribucion), m.espacio);
 
@@ -69,14 +68,15 @@ public class Mundo implements Leyes, Serializable, Cloneable {
 
 		for (int i=0; i <m.espacio.length; i++)
 			this.espacio[i] = Arrays.copyOf(m.espacio[i], m.espacio[i].length);
+		throw new ModeloException("El mundo no es valido");
 		//System.arraycopy(m.espacio[i], 0, this.espacio[i], 0, m.espacio[i].length);	
 	}
 
-	public String getNombre() {
+	public String getNombre()throws ModeloException {
 		return nombre;
 	}
 
-	public List<Integer> getConstantes() {
+	public List<Integer> getConstantes()throws ModeloException {
 		return constantes;
 	}
 
@@ -89,7 +89,7 @@ public class Mundo implements Leyes, Serializable, Cloneable {
 		return espacio;
 	}
 
-	public void setNombre(String nombre) {
+	public void setNombre(String nombre)throws ModeloException {
 		if (nombre == null) {
 			this.nombre = "MundoDefecto";
 		}
@@ -98,7 +98,7 @@ public class Mundo implements Leyes, Serializable, Cloneable {
 		}
 	}
 
-	public void setConstantes(List<Integer> parametros) {
+	public void setConstantes(List<Integer> parametros)throws ModeloException {
 
 		if (parametros == null) {
 			this.constantes = new ArrayList<Integer>();
@@ -106,13 +106,14 @@ public class Mundo implements Leyes, Serializable, Cloneable {
 		else {
 			this.constantes = parametros;
 		}
+		throw new ModeloException ("Las constantes no puede estar vacio");
 	}
 
-	public void setDistribucion(Map<Patron, Posicion> distribucion) {
+	public void setDistribucion(Map<Patron, Posicion> distribucion)throws ModeloException{
 		this.distribucion = distribucion;
 	}
 
-	public void setEspacio(byte[][] espacio) {
+	public void setEspacio(byte[][] espacio) throws ModeloException{
 		int tamaño = 12;
 		if (espacio == null || espacio.length == 0) {
 			this.espacio = new byte[tamaño][tamaño];
@@ -120,6 +121,7 @@ public class Mundo implements Leyes, Serializable, Cloneable {
 				for (int j=0; j < this.espacio.length; j++) {
 					this.espacio[i][j] = 0; 
 				}
+				throw new ModeloException ("El espacio no puede estar vacio");
 			}
 			return;
 		}
@@ -127,11 +129,6 @@ public class Mundo implements Leyes, Serializable, Cloneable {
 	}
 
 	//Métodos de la interface Leyes
-	/**
-	 * Establece la manera en que actualiza el estado de un mundo. 
-	 * Responde a la regla: El tiempo transcurre y se producen cambios...
-	 */
-	@Override
 	public void actualizarMundo()  {     					
 		int tam = espacio.length; 
 		byte[][] nuevaRealidad = new byte[tam][tam];
@@ -223,7 +220,14 @@ public class Mundo implements Leyes, Serializable, Cloneable {
 	@Override
 	public Object clone() {
 		// Utiliza el constructor copia.
-		return new Mundo(this);
+		Object mundo = null;
+		try{
+		mundo = new Mundo(this);
+		}
+		catch (Exception e){
+			
+		}
+		return mundo;
 	}
 
 } //class
