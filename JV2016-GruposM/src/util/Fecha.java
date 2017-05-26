@@ -1,14 +1,11 @@
 /** 
  * Proyecto: Juego de la vida.
- *  Clase-utilidad que adapta el uso de un Calendario para majejo de fches en el programa.
- *  @since: prototipo1.2
- *  @source: Fecha.java 
- *  @version: 2.0 - 2017/03/20
- *  @author: ajp
+ * @since: prototipo1.2
+ * @source: Fecha.java 
+ * @version: 2.1 - 2017.05.05
+ * @author: Fran
+ * @author: Grupo 3
  */
-
-package util;
-
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -60,27 +57,27 @@ public class Fecha {
 		return calendario.get(Calendar.SECOND);
 	}
 	
-	public void setAño(int año) {
+	public void setAño(int año) throws ModeloException{
 		calendario.set(Calendar.YEAR, año);
 	}
 	
-	public void setMes(int mes) {
+	public void setMes(int mes)throws ModeloException {
 		calendario.set(Calendar.MONTH, mes-1);
 	}
 	
-	public void setDia(int dia) {
+	public void setDia(int dia)throws ModeloException {
 		calendario.set(Calendar.DAY_OF_MONTH, dia);
 	}
 	
-	public void setHora(int hora) {
+	public void setHora(int hora)throws ModeloException {
 		calendario.set(Calendar.HOUR_OF_DAY, hora);
 	}
 	
-	public void setMinuto(int minuto) {
+	public void setMinuto(int minuto)throws ModeloException {
 		calendario.set(Calendar.MINUTE, minuto);
 	}
 	
-	public void setSegundo(int segundo) {
+	public void setSegundo(int segundo)throws ModeloException {
 		calendario.set(Calendar.SECOND, segundo);
 	}
 	/**
@@ -268,7 +265,14 @@ public class Fecha {
 	*/
 	@Override
 	public Object clone() {
-		return new Fecha(this);
+		//return new Fecha(this);
+		Object fecha = null;
+		try{
+			fecha = new Fecha(this);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		return fecha;
 	}
-	
-} // class
+} //class
