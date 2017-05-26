@@ -1,24 +1,17 @@
 /** 
  * Proyecto: Juego de la vida.
- * Clase JUnit de prueba automatizada de las características de la clase Fecha según el modelo 2.
- * @since: prototipo2
- * @source: TestFecha.java 
- * @version: 2.0 - 2017/03/23
- * @author: ajp
+ * @since: prototipo1.2
+ * @source: FechaTest.java 
+ * @version: 2.1 - 2017.05.05
+ * @author: Fran
+ * @author: Grupo 3
  */
-
-package util.test;
-
 import static org.junit.Assert.*;
 
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
-import util.Fecha;
+import org.junit.*;
 
 public class FechaTest {
 	private Fecha fecha1; 
@@ -38,7 +31,7 @@ public class FechaTest {
 	 * Método que se ejecuta después de cada @Test para limpiar datos de prueba.
 	 */
 	@After	
-	public void borrarDatosPrueba() {
+	public void borrarDatosPrueba() throws ModeloException{
 		fecha1 = null;
 
 	}
@@ -105,37 +98,37 @@ public class FechaTest {
 	}
 
 	@Test
-	public void testSetAño() {
+	public void testSetAño()throws ModeloException {
 		fecha1.setAño(2000);
 		assertEquals(fecha1.getAño(), 2000);
 	}
 
 	@Test
-	public void testSetMes() {
+	public void testSetMes()throws ModeloException {
 		fecha1.setMes(2);
 		assertEquals(fecha1.getMes(), 2);
 	}
 
 	@Test
-	public void testSetDia() {
+	public void testSetDia()throws ModeloException {
 		fecha1.setDia(20);
 		assertEquals(fecha1.getDia(), 20);
 	}
 
 	@Test
-	public void testSetHora() {
+	public void testSetHora()throws ModeloException {
 		fecha1.setHora(15);
 		assertEquals(fecha1.getHora(), 15);
 	}
 
 	@Test
-	public void testSetMinuto() {
+	public void testSetMinuto()throws ModeloException {
 		fecha1.setMinuto(10);
 		assertEquals(fecha1.getMinuto(), 10);
 	}
 
 	@Test
-	public void testSetSegundo() {
+	public void testSetSegundo()throws ModeloException {
 		fecha1.setSegundo(5);
 		assertEquals(fecha1.getSegundo(), 5);
 	}
