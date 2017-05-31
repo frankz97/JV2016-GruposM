@@ -36,7 +36,7 @@ public class MundosDAO implements OperacionesDAO {
 
 	/**
 	 *  Método estático de acceso a la instancia única.
-	 *  Si no existe la crea invocando al constructor interno.
+	 *  Si no existe la crea invocando al constructor interno
 	 *  Utiliza inicialización diferida.
 	 *  Sólo se crea una vez; instancia única -patrón singleton-
 	 *  @return instancia
