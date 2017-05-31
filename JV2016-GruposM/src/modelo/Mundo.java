@@ -26,7 +26,7 @@ public class Mundo implements Leyes, Serializable, Cloneable {
 	 * Constructor convencional.
 	 * Establece el valor inicial de cada uno de los atributos.
 	 * Recibe parámetros que se corresponden con los atributos.
-	 * Utiliza métodos set... para la posible verificación.
+	 * Utiliza métodos set... para la posible verificación
 	 * @param nombre
 	 * @param constantes
 	 * @param distribucion
