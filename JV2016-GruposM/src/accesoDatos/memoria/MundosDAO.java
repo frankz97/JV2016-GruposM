@@ -1,19 +1,17 @@
-/** 
+package memoria;
+/*
  * Proyecto: Juego de la vida.
- * Resuelve todos los aspectos del almacenamiento del DTO Mundo utilizando un ArrayList.
- * Colabora en el patron Fachada.
- * @since: prototipo2.0
- * @source: MundosDAO.java 
- * @version: 2.0 - 2017/03/23
- * @author: ajp
- */
-
-package accesoDatos.memoria;
-
+ * @since: prototipo1.2
+ * @source: MundoDAO.java 
+ * @version: 2.1 - 2017.05.05
+ * @author: fran
+ * @author: Grupo 3
+*/
 import java.util.ArrayList;
 import java.util.Hashtable;
 
 import accesoDatos.OperacionesDAO;
+import modelo.ModeloException;
 import modelo.Mundo;
 import modelo.Patron;
 import modelo.Posicion;
@@ -29,8 +27,9 @@ public class MundosDAO implements OperacionesDAO {
 	/**
 	 * Constructor por defecto de uso interno.
 	 * Sólo se ejecutará una vez.
+	 * @throws Exception 
 	 */
-	private MundosDAO() {
+	private MundosDAO() throws Exception {
 		datosMundos = new ArrayList<Mundo>();
 		cargarPredeterminados();
 	}
@@ -41,8 +40,9 @@ public class MundosDAO implements OperacionesDAO {
 	 *  Utiliza inicialización diferida.
 	 *  Sólo se crea una vez; instancia única -patrón singleton-
 	 *  @return instancia
+	 * @throws Exception 
 	 */
-	public static MundosDAO getInstancia() {
+	public static MundosDAO getInstancia() throws Exception {
 		if (instancia == null) {
 			instancia = new MundosDAO();
 		}
@@ -51,8 +51,9 @@ public class MundosDAO implements OperacionesDAO {
 
 	/**
 	 *  Método para generar de datos predeterminados.
+	 * @throws Exception 
 	 */
-	private void cargarPredeterminados() {
+	private void cargarPredeterminados() throws Exception {
 		// En este array los 0 indican celdas con célula muerta y los 1 vivas
 		byte[][] espacioDemo =  new byte[][]{ 
 			{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, //
@@ -85,9 +86,10 @@ public class MundosDAO implements OperacionesDAO {
 	 * Obtiene el objeto dado el id utilizado para el almacenamiento.
 	 * @param nombre - id del mundo a obtener.
 	 * @return - el Mundo encontrado; null si no existe.
+	 * @throws ModeloException 
 	 */	
 	@Override
-	public Mundo obtener(String nombre) {
+	public Mundo obtener(String nombre) throws ModeloException {
 		if (nombre != null) {
 			int posicion = obtenerPosicion(nombre);				// En base 1
 			if (posicion >= 0) {
@@ -102,8 +104,9 @@ public class MundosDAO implements OperacionesDAO {
 	 *  la estructura.
 	 *	@param nombre - id de Mundo a buscar.
 	 *	@return - la posición, en base 1, que ocupa un objeto o la que ocuparía (negativo).
+	 * @throws ModeloException 
 	 */
-	private int obtenerPosicion(String nombre) {
+	private int obtenerPosicion(String nombre) throws ModeloException {
 		int comparacion;
 		int inicio = 0;
 		int fin = datosMundos.size() - 1;
@@ -129,9 +132,10 @@ public class MundosDAO implements OperacionesDAO {
 	 * Búsqueda de Mundo dado un objeto, reenvía al método que utiliza nombre.
 	 * @param obj - el Mundo a buscar.
 	 * @return - el Mundo encontrado; null si no existe.
+	 * @throws ModeloException 
 	 */
 	@Override
-	public Mundo obtener(Object obj)  {
+	public Mundo obtener(Object obj) throws ModeloException  {
 		return this.obtener(((Mundo) obj).getNombre());
 	}
 	
@@ -139,10 +143,11 @@ public class MundosDAO implements OperacionesDAO {
 	 *  Alta de un objeto en el almacén de datos, 
 	 *  sin repeticiones, según el campo id previsto. 
 	 *	@param obj - Objeto a almacenar.
+	 * @throws ModeloException 
 	 *  @ - si ya existe.
 	 */
 	@Override
-	public void alta(Object obj)  {
+	public void alta(Object obj) throws ModeloException  {
 		assert obj != null;
 		Mundo mundoNuevo = (Mundo) obj;										// Para conversión cast
 		int posicionInsercion = obtenerPosicion(mundoNuevo.getNombre()); 
@@ -156,9 +161,10 @@ public class MundosDAO implements OperacionesDAO {
 	 * Elimina el objeto, dado el id utilizado para el almacenamiento.
 	 * @param nombre - el nombre del Mundo a eliminar.
 	 * @return - el Mundo eliminado. null si no existe.
+	 * @throws ModeloException 
 	 */
 	@Override
-	public Mundo baja(String nombre)  {
+	public Mundo baja(String nombre) throws ModeloException  {
 		assert (nombre != null);
 		int posicion = obtenerPosicion(nombre); 									// En base 1
 		if (posicion > 0) {
@@ -170,10 +176,11 @@ public class MundosDAO implements OperacionesDAO {
 	/**
 	 *  Actualiza datos de un Mundo reemplazando el almacenado por el recibido.
 	 *	@param obj - Mundo con las modificaciones.
+	 * @throws ModeloException 
 	 *  @ - si no existe.
 	 */
 	@Override
-	public void actualizar(Object obj)  {
+	public void actualizar(Object obj) throws ModeloException  {
 		assert obj != null;
 		Mundo mundoActualizado = (Mundo) obj;										// Para conversión cast
 		int posicion = obtenerPosicion(mundoActualizado.getNombre()); 				// En base 1
