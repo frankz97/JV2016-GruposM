@@ -161,7 +161,7 @@ public class Fecha {
 	
 	/**
 	 * Añade una cantidad de minutos a la hora y fecha
-	 * @param minutos - minutos a añadir
+	 * @param minutos -minutos a añadir
 	 */
 	public void addMinutos(int minutos) {
 		calendario.add(Calendar.MINUTE, minutos);
