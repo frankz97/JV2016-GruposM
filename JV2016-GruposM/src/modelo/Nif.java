@@ -1,13 +1,15 @@
+package modelo;
 /** 
  * Proyecto: Juego de la vida.
  * @since: prototipo1.2
  * @source: Nif.java 
  * @version: 2.1 - 2017.05.05
- * @author: Fran
+ * @author: fran
  * @author: Grupo 3
  */
 import java.io.Serializable;
 
+import util.Formato;
 
 public class Nif implements Serializable, Cloneable {
 	private static final long serialVersionUID = 1L;
