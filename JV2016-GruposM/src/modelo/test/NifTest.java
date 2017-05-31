@@ -30,7 +30,7 @@ import modelo.Nif;
 		}
 
 		/**
-		 * Método que se ejecuta después de cada @Test para limpiar datos de prueba.
+		 * Método que se ejecuta después de cada @Test para limpiar datos de prueba
 		 */
 		@After	
 		public void borrarDatosPrueba() throws ModeloException {
