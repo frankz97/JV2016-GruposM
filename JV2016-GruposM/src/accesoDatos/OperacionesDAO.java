@@ -34,7 +34,7 @@ public interface OperacionesDAO {
 	 *  sin repeticiones, según el campo id previsto. 
 	 *	@param obj - Objeto a almacenar.
 	 * @throws ModeloException 
-	 *  @throws DatosException - si ya existe.
+	 *  @throws DatosException - si ya existe
 	 */
 	void alta(Object obj) throws ModeloException;
 	
