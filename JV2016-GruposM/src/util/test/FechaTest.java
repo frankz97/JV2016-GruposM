@@ -38,7 +38,7 @@ public class FechaTest {
 
 	// Test CON DATOS VALIDOS
 	@Test
-	public void testFechaParcial() {
+	public void testFechaParcial()throws ModeloException {
 		assertNotNull(fecha2);
 		assertEquals(fecha2.getAño(), 2000);
 		assertEquals(fecha2.getMes(), 2);
@@ -46,7 +46,7 @@ public class FechaTest {
 	}
 
 	@Test
-	public void testFechaConvencional() {
+	public void testFechaConvencional()throws ModeloException {
 		assertNotNull(fecha3);
 		assertEquals(fecha3.getAño(), 2000);
 		assertEquals(fecha3.getMes(), 2);
@@ -57,43 +57,43 @@ public class FechaTest {
 	}
 
 	@Test
-	public void testFechaDefecto() {
+	public void testFechaDefecto()throws ModeloException {
 		assertNotNull(fecha2);
 	}
 
 	@Test
-	public void testFechaCopia() {
+	public void testFechaCopia()throws ModeloException {
 		fecha1 = new Fecha(fecha2);
 		assertNotSame(fecha1, fecha2);
 	}
 
 	@Test
-	public void testGetAño() {
+	public void testGetAño()throws ModeloException {
 		assertEquals(fecha2.getAño(), 2000);
 	}
 
 	@Test
-	public void testGetMes() {
+	public void testGetMes()throws ModeloException {
 		assertEquals(fecha2.getMes(), 2);
 	}
 
 	@Test
-	public void testGetDia() {
+	public void testGetDia()throws ModeloException {
 		assertEquals(fecha2.getDia(), 20);
 	}
 
 	@Test
-	public void testGetHora() {
+	public void testGetHora()throws ModeloException {
 		assertEquals(fecha3.getHora(), 15);
 	}
 
 	@Test
-	public void testGetMinuto() {
+	public void testGetMinuto()throws ModeloException {
 		assertEquals(fecha3.getMinuto(), 10);
 	}
 
 	@Test
-	public void testGetSegundo() {
+	public void testGetSegundo()throws ModeloException {
 		assertEquals(fecha3.getSegundo(), 5);
 	}
 
@@ -134,110 +134,110 @@ public class FechaTest {
 	}
 
 	@Test
-	public void testDifSegundos() {
+	public void testDifSegundos()throws ModeloException {
 		Fecha fecha = new Fecha(2000, 02, 19);
 		assertEquals(fecha.difSegundos(fecha2), 86400);
 	}
 
 	@Test
-	public void testDifMinutos() {
+	public void testDifMinutos()throws ModeloException {
 		Fecha fecha = new Fecha(2000, 02, 19);
 		assertEquals(fecha.difMinutos(fecha2), 86400/60);
 	}
 
 	@Test
-	public void testDifHoras() {
+	public void testDifHoras()throws ModeloException {
 		Fecha fecha = new Fecha(2000, 02, 19);
 		assertEquals(fecha.difHoras(fecha2), 24);
 	}
 
 	@Test
-	public void testDifDias() {
+	public void testDifDias()throws ModeloException {
 		Fecha fecha = new Fecha(2000, 02, 19);
 		assertEquals(fecha.difDias(fecha2), 1);
 	}
 
 	@Test
-	public void testDifSemanas() {
+	public void testDifSemanas()throws ModeloException {
 		Fecha fecha = new Fecha(2000, 02, 27);
 		assertEquals(fecha.difSemanas(fecha2), 1);
 	}
 
 	@Test
-	public void testDifMeses() {
+	public void testDifMeses()throws ModeloException {
 		Fecha fecha = new Fecha(2000, 03, 20);
 		assertEquals(fecha.difMeses(fecha2), 1);
 	}
 
 	@Test
-	public void testDifAños() {
+	public void testDifAños()throws ModeloException {
 		Fecha fecha = new Fecha(2001, 02, 20);
 		assertEquals(fecha.difAños(fecha2), 1);
 	}
 
 	@Test
-	public void testAddSegundos() {
+	public void testAddSegundos()throws ModeloException {
 		Fecha fecha = new Fecha(2000, 02, 19);
 		fecha.addSegundos(86400);
 		assertEquals(fecha.getDia(), 20);
 	}
 
 	@Test
-	public void testAddMinutos() {
+	public void testAddMinutos()throws ModeloException {
 		Fecha fecha = new Fecha(2000, 02, 19);
 		fecha.addMinutos(86400/60);
 		assertEquals(fecha.getDia(), 20);
 	}
 
 	@Test
-	public void testAddHoras() {
+	public void testAddHoras()throws ModeloException {
 		Fecha fecha = new Fecha(2000, 02, 19);
 		fecha.addHoras(24);
 		assertEquals(fecha.getDia(), 20);
 	}
 
 	@Test
-	public void testAddDias() {
+	public void testAddDias()throws ModeloException {
 		Fecha fecha = new Fecha(2000, 02, 19);
 		fecha.addDias(1);
 		assertEquals(fecha.getDia(), 20);
 	}
 
 	@Test
-	public void testAddSemanas() {
+	public void testAddSemanas()throws ModeloException {
 		Fecha fecha = new Fecha(2000, 02, 19);
 		fecha.addSemanas(4);
 		assertEquals(fecha.getMes(), 3);
 	}
 
 	@Test
-	public void testAddMeses() {
+	public void testAddMeses()throws ModeloException {
 		Fecha fecha = new Fecha(2000, 02, 19);
 		fecha.addMeses(1);
 		assertEquals(fecha.getMes(), 3);
 	}
 
 	@Test
-	public void testAddAños() {
+	public void testAddAños()throws ModeloException {
 		Fecha fecha = new Fecha(2000, 02, 19);
 		fecha.addAños(1);
 		assertEquals(fecha.getAño(), 2001);
 	}
 
 	@Test
-	public void testToDate() {
+	public void testToDate()throws ModeloException {
 		Date hoy = fecha1.toDate();
 		assertNotNull(hoy);
 	}
 
 	@Test
-	public void testToGregorianCalendar() {
+	public void testToGregorianCalendar()throws ModeloException {
 		GregorianCalendar hoy = fecha1.toGregorianCalendar();
 		assertNotNull(hoy);
 	}
 
 	@Test
-	public void testCompareTo() {
+	public void testCompareTo()throws ModeloException {
 		Fecha fecha = new Fecha(2000, 02, 21);
 		assertTrue(fecha2.compareTo(fecha2) == 0);
 		assertTrue(fecha.compareTo(fecha2) > 0);
@@ -245,25 +245,25 @@ public class FechaTest {
 	}
 
 	@Test
-	public void testToString() {
+	public void testToString()throws ModeloException {
 		System.out.println(fecha3);
 		assertEquals(fecha3.toString(), "2000.2.20 15:10:5");
 	}
 
 	@Test
-	public void testEquals() {
+	public void testEquals()throws ModeloException {
 		fecha1 = new Fecha(2000, 02, 20);
 		assertTrue(fecha1.equals(fecha2));
 	}
 
 	@Test
-	public void testClone() {
+	public void testClone()throws ModeloException{
 		fecha1 = (Fecha) fecha2.clone();
 		assertNotSame(fecha1, fecha2);
 	}
 
 	@Test
-	public void testHashCode() {
+	public void testHashCode()throws ModeloException {
 		assertEquals(fecha2.hashCode(), -40233105);
 	}
 } //class
