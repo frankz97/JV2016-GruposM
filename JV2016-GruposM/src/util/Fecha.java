@@ -1,3 +1,4 @@
+package util;
 /** 
  * Proyecto: Juego de la vida.
  * @since: prototipo1.2
