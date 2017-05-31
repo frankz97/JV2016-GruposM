@@ -1,3 +1,5 @@
+package modelo;
+
 /** 
  * Proyecto: Juego de la vida.
  * @since: prototipo1.2
@@ -121,7 +123,7 @@ public class Mundo implements Leyes, Serializable, Cloneable {
 				for (int j=0; j < this.espacio.length; j++) {
 					this.espacio[i][j] = 0; 
 				}
-				throw new ModeloException ("El espacio no puede estar vacio");
+				throw new ModeloException ("El espacio" + espacio + "no puede estar vacio");
 			}
 			return;
 		}
